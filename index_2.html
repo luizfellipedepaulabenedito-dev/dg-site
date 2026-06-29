@@ -1,0 +1,2779 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- ===================== SEO ===================== -->
+  <title>DG TEAM Muay Thai – Há 13 Anos Formando Campeões</title>
+  <meta name="description" content="Academia DG TEAM Muay Thai com o treinador Diguinho. 13 anos formando campeões dentro e fora do tatame. Turmas para adultos e crianças. Cadastre-se agora!" />
+  <meta name="keywords" content="muay thai, academia, dg team, diguinho, artes marciais, luta, kickboxing, treinamento" />
+  <meta name="author" content="DG TEAM Muay Thai" />
+  <meta name="robots" content="index, follow" />
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="DG TEAM Muay Thai – Há 13 Anos Formando Campeões" />
+  <meta property="og:description" content="Disciplina, respeito e evolução através do Muay Thai. Cadastre-se e comece sua jornada!" />
+  <meta property="og:image" content="img/og-image.jpg" />
+  <meta property="og:url" content="https://dgteammuaythai.com.br" />
+  <meta property="og:site_name" content="DG TEAM Muay Thai" />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="DG TEAM Muay Thai" />
+  <meta name="twitter:description" content="13 anos formando campeões dentro e fora do tatame." />
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="img/favicon.png" />
+  <link rel="apple-touch-icon" href="img/apple-touch-icon.png" />
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Rajdhani:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+
+  <!-- Stylesheet -->
+  <style>
+/* ================================================================
+   DG TEAM MUAY THAI — style.css
+   Paleta: Preto / Vermelho / Branco / Cinza escuro / Dourado sutil
+   ================================================================ */
+
+/* ============================================================
+   VARIÁVEIS & RESET
+   ============================================================ */
+:root {
+  /* Cores */
+  --c-bg:        #0a0a0a;
+  --c-bg-2:      #111111;
+  --c-bg-3:      #161616;
+  --c-card:      #1a1a1a;
+  --c-border:    #2a2a2a;
+  --c-red:       #cc0000;
+  --c-red-hover: #e60000;
+  --c-red-dark:  #8b0000;
+  --c-red-glow:  rgba(204, 0, 0, 0.25);
+  --c-gold:      #c9a84c;
+  --c-white:     #ffffff;
+  --c-text:      #e0e0e0;
+  --c-muted:     #888888;
+  --c-glass:     rgba(255,255,255,0.04);
+  --c-glass-b:   rgba(255,255,255,0.08);
+
+  /* Tipografia */
+  --font-display: 'Bebas Neue', sans-serif;
+  --font-heading: 'Rajdhani', sans-serif;
+  --font-body:    'Inter', sans-serif;
+
+  /* Espaçamento */
+  --section-py: 100px;
+  --container:  1200px;
+  --radius:     12px;
+  --radius-lg:  20px;
+
+  /* Transições */
+  --ease:       cubic-bezier(0.4, 0, 0.2, 1);
+  --duration:   0.3s;
+
+  /* Navbar */
+  --nav-h: 72px;
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  font-size: 16px;
+}
+
+body {
+  background: var(--c-bg);
+  color: var(--c-text);
+  font-family: var(--font-body);
+  line-height: 1.65;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+img { max-width: 100%; display: block; }
+a { color: inherit; text-decoration: none; }
+button { cursor: pointer; border: none; background: none; font: inherit; }
+ul { list-style: none; }
+address { font-style: normal; }
+
+/* ============================================================
+   LOADER
+   ============================================================ */
+#loader {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  background: var(--c-bg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: opacity 0.5s var(--ease), visibility 0.5s var(--ease);
+  /* Rede de segurança: caso o JavaScript não execute (bloqueado, removido
+     pela hospedagem, demora no carregamento etc.), a tela de loading some
+     sozinha via CSS depois de alguns segundos, sem travar a página. */
+  animation: loaderFailSafe 0.01s linear 4.5s forwards;
+}
+
+#loader.loader-hidden {
+  opacity: 0;
+  visibility: hidden;
+}
+
+@keyframes loaderFailSafe {
+  to {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+  }
+}
+
+.loader-inner {
+  text-align: center;
+}
+
+.loader-logo {
+  font-family: var(--font-display);
+  font-size: clamp(3rem, 10vw, 5rem);
+  color: var(--c-white);
+  letter-spacing: 0.08em;
+  margin-bottom: 24px;
+}
+
+.loader-logo span {
+  color: var(--c-red);
+}
+
+.loader-bar {
+  width: 200px;
+  height: 3px;
+  background: var(--c-border);
+  border-radius: 99px;
+  overflow: hidden;
+  margin: 0 auto;
+}
+
+.loader-fill {
+  height: 100%;
+  background: var(--c-red);
+  border-radius: 99px;
+  animation: loaderFill 0.9s var(--ease) forwards;
+}
+
+@keyframes loaderFill {
+  from { width: 0; }
+  to   { width: 100%; }
+}
+
+/* ============================================================
+   NAVBAR
+   ============================================================ */
+#navbar {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 1000;
+  height: var(--nav-h);
+  transition: background var(--duration) var(--ease),
+              box-shadow var(--duration) var(--ease),
+              transform 0.4s var(--ease);
+}
+
+#navbar.scrolled {
+  background: rgba(10,10,10,0.92);
+  backdrop-filter: blur(20px);
+  box-shadow: 0 1px 0 var(--c-border);
+}
+
+#navbar.nav-hidden {
+  transform: translateY(-100%);
+}
+
+.nav-container {
+  max-width: var(--container);
+  margin: 0 auto;
+  padding: 0 24px;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 32px;
+}
+
+.nav-logo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-shrink: 0;
+}
+
+.nav-logo-img {
+  height: 44px;
+  width: auto;
+  object-fit: contain;
+}
+
+.nav-logo-text {
+  font-family: var(--font-display);
+  font-size: 1.6rem;
+  color: var(--c-white);
+  letter-spacing: 0.08em;
+}
+
+.nav-logo-text span {
+  color: var(--c-red);
+}
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.nav-links li a {
+  padding: 8px 14px;
+  font-family: var(--font-heading);
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--c-muted);
+  border-radius: 8px;
+  transition: color var(--duration), background var(--duration);
+  letter-spacing: 0.05em;
+}
+
+.nav-links li a:hover,
+.nav-links li a.active {
+  color: var(--c-white);
+  background: var(--c-glass-b);
+}
+
+.nav-cta {
+  background: var(--c-red) !important;
+  color: var(--c-white) !important;
+  padding: 8px 20px !important;
+  border-radius: 8px;
+  transition: background var(--duration) !important;
+}
+
+.nav-cta:hover {
+  background: var(--c-red-hover) !important;
+}
+
+/* Hamburger */
+.nav-toggle {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  padding: 8px;
+}
+
+.nav-toggle span {
+  display: block;
+  width: 24px;
+  height: 2px;
+  background: var(--c-white);
+  border-radius: 2px;
+  transition: transform 0.3s var(--ease), opacity 0.3s;
+}
+
+.nav-toggle.active span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.nav-toggle.active span:nth-child(2) { opacity: 0; }
+.nav-toggle.active span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+/* ============================================================
+   UTILITÁRIOS
+   ============================================================ */
+.container {
+  max-width: var(--container);
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+.section {
+  padding: var(--section-py) 0;
+}
+
+.section-dark {
+  background: var(--c-bg-2);
+}
+
+.section-header {
+  text-align: center;
+  margin-bottom: 64px;
+}
+
+.section-eyebrow {
+  display: inline-block;
+  font-family: var(--font-heading);
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--c-red);
+  margin-bottom: 12px;
+}
+
+.section-title {
+  font-family: var(--font-heading);
+  font-size: clamp(2rem, 4vw, 2.8rem);
+  font-weight: 700;
+  color: var(--c-white);
+  line-height: 1.2;
+  margin-bottom: 16px;
+}
+
+.section-subtitle {
+  font-size: 1.05rem;
+  color: var(--c-muted);
+  max-width: 560px;
+  margin: 0 auto;
+}
+
+/* Botões */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 14px 28px;
+  border-radius: 10px;
+  font-family: var(--font-heading);
+  font-size: 1rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  transition: all var(--duration) var(--ease);
+  position: relative;
+  overflow: hidden;
+}
+
+.btn::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(255,255,255,0.1);
+  opacity: 0;
+  transition: opacity var(--duration);
+}
+
+.btn:hover::before { opacity: 1; }
+
+.btn-primary {
+  background: var(--c-red);
+  color: var(--c-white);
+  box-shadow: 0 4px 24px var(--c-red-glow);
+}
+
+.btn-primary:hover {
+  background: var(--c-red-hover);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 32px var(--c-red-glow);
+}
+
+.btn-ghost {
+  background: transparent;
+  color: var(--c-white);
+  border: 1.5px solid var(--c-border);
+}
+
+.btn-ghost:hover {
+  border-color: var(--c-white);
+  transform: translateY(-2px);
+}
+
+.btn-lg { padding: 18px 40px; font-size: 1.05rem; }
+.btn-sm { padding: 10px 20px; font-size: 0.9rem; }
+
+/* ============================================================
+   SCROLL REVEAL
+   ============================================================ */
+.reveal-up,
+.reveal-left,
+.reveal-right {
+  opacity: 0;
+  transition: opacity 0.7s var(--ease), transform 0.7s var(--ease);
+  /* Rede de segurança: se o JavaScript não rodar (bloqueado, removido pela
+     hospedagem etc.), o conteúdo aparece sozinho depois de alguns segundos
+     em vez de ficar invisível para sempre. */
+  animation: revealFailSafe 0.01s linear 3s forwards;
+}
+
+@keyframes revealFailSafe {
+  to { opacity: 1; transform: none; }
+}
+
+.reveal-up    { transform: translateY(36px); }
+.reveal-left  { transform: translateX(-36px); }
+.reveal-right { transform: translateX(36px); }
+
+.reveal-up.revealed,
+.reveal-left.revealed,
+.reveal-right.revealed {
+  opacity: 1;
+  transform: none;
+}
+
+/* ============================================================
+   HERO
+   ============================================================ */
+#hero {
+  position: relative;
+  min-height: 100svh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  padding-top: var(--nav-h);
+}
+
+.hero-bg {
+  position: absolute;
+  inset: 0;
+  will-change: transform;
+}
+
+.hero-bg::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    url('img/hero-bg.jpg') center/cover no-repeat,
+    linear-gradient(135deg, #1a0000 0%, #0a0a0a 100%);
+}
+
+.hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    rgba(0,0,0,0.55) 0%,
+    rgba(0,0,0,0.7) 60%,
+    rgba(10,10,10,1) 100%
+  );
+}
+
+.hero-particles {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.particle {
+  position: absolute;
+  border-radius: 50%;
+  background: var(--c-red);
+  animation: floatParticle linear infinite;
+}
+
+@keyframes floatParticle {
+  0%   { transform: translateY(0) scale(1); opacity: 0.4; }
+  50%  { transform: translateY(-40px) scale(1.3); opacity: 0.7; }
+  100% { transform: translateY(0) scale(1); opacity: 0.4; }
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  max-width: 860px;
+  padding: 40px 24px;
+}
+
+.hero-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--c-glass);
+  border: 1px solid var(--c-border);
+  border-radius: 99px;
+  padding: 6px 16px;
+  font-size: 0.8rem;
+  font-family: var(--font-heading);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--c-muted);
+  margin-bottom: 28px;
+  backdrop-filter: blur(8px);
+}
+
+.badge-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--c-red);
+  animation: pulse 1.8s ease infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { box-shadow: 0 0 0 0 var(--c-red-glow); }
+  50%       { box-shadow: 0 0 0 6px transparent; }
+}
+
+.hero-title {
+  font-family: var(--font-display);
+  font-size: clamp(3.5rem, 9vw, 7rem);
+  color: var(--c-white);
+  line-height: 1;
+  letter-spacing: 0.02em;
+  margin-bottom: 24px;
+}
+
+.hero-highlight {
+  color: var(--c-red);
+  position: relative;
+  display: inline-block;
+}
+
+.hero-subtitle {
+  font-size: clamp(1rem, 2vw, 1.15rem);
+  color: var(--c-muted);
+  margin-bottom: 40px;
+  max-width: 520px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.hero-actions {
+  display: flex;
+  gap: 16px;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-bottom: 60px;
+}
+
+.hero-stats {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0;
+  background: var(--c-glass);
+  border: 1px solid var(--c-border);
+  border-radius: var(--radius-lg);
+  backdrop-filter: blur(12px);
+  padding: 20px 40px;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.stat {
+  text-align: center;
+  padding: 8px 32px;
+}
+
+.stat-num {
+  display: block;
+  font-family: var(--font-display);
+  font-size: 2.4rem;
+  color: var(--c-red);
+  line-height: 1;
+}
+
+.stat-label {
+  display: block;
+  font-size: 0.75rem;
+  color: var(--c-muted);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin-top: 4px;
+}
+
+.stat-divider {
+  width: 1px;
+  height: 40px;
+  background: var(--c-border);
+}
+
+.hero-scroll {
+  position: absolute;
+  bottom: 32px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 2;
+}
+
+.hero-scroll span {
+  display: block;
+  width: 24px;
+  height: 40px;
+  border: 2px solid var(--c-border);
+  border-radius: 99px;
+  position: relative;
+}
+
+.hero-scroll span::after {
+  content: '';
+  position: absolute;
+  width: 4px;
+  height: 8px;
+  background: var(--c-red);
+  border-radius: 2px;
+  left: 50%;
+  top: 6px;
+  transform: translateX(-50%);
+  animation: scrollDot 1.8s ease infinite;
+}
+
+@keyframes scrollDot {
+  0%   { opacity: 1; top: 6px; }
+  80%  { opacity: 0; top: 20px; }
+  100% { opacity: 0; top: 6px; }
+}
+
+/* ============================================================
+   SOBRE
+   ============================================================ */
+.sobre-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  align-items: center;
+}
+
+.sobre-visual {
+  position: relative;
+}
+
+.sobre-img-frame {
+  position: relative;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+}
+
+.sobre-img {
+  width: 100%;
+  aspect-ratio: 4/5;
+  object-fit: cover;
+  border-radius: var(--radius-lg);
+  filter: grayscale(20%);
+  transition: filter 0.4s;
+}
+
+.sobre-img:hover { filter: grayscale(0%); }
+
+.sobre-img-accent {
+  position: absolute;
+  inset: 0;
+  border-radius: var(--radius-lg);
+  border: 2px solid transparent;
+  background: linear-gradient(135deg, var(--c-red), transparent) border-box;
+  -webkit-mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
+  mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: destination-out;
+  mask-composite: exclude;
+  pointer-events: none;
+}
+
+.sobre-badge-float {
+  position: absolute;
+  bottom: -24px;
+  right: -24px;
+  background: var(--c-red);
+  border-radius: var(--radius);
+  padding: 20px 24px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  box-shadow: 0 12px 40px var(--c-red-glow);
+}
+
+.badge-years {
+  font-family: var(--font-display);
+  font-size: 3rem;
+  color: var(--c-white);
+  line-height: 1;
+}
+
+.badge-text {
+  font-family: var(--font-heading);
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: rgba(255,255,255,0.8);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.sobre-content { }
+
+.sobre-text {
+  color: var(--c-muted);
+  margin-bottom: 20px;
+  font-size: 1.02rem;
+}
+
+.sobre-text strong { color: var(--c-white); }
+
+.valores-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  margin-top: 40px;
+}
+
+.valor-card {
+  background: var(--c-card);
+  border: 1px solid var(--c-border);
+  border-radius: var(--radius);
+  padding: 20px;
+  transition: border-color var(--duration), transform var(--duration);
+}
+
+.valor-card:hover {
+  border-color: var(--c-red);
+  transform: translateY(-3px);
+}
+
+.valor-icon {
+  font-size: 1.6rem;
+  margin-bottom: 8px;
+}
+
+.valor-card h3 {
+  font-family: var(--font-heading);
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--c-white);
+  margin-bottom: 4px;
+}
+
+.valor-card p {
+  font-size: 0.82rem;
+  color: var(--c-muted);
+}
+
+/* ============================================================
+   HORÁRIOS
+   ============================================================ */
+.horarios-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 28px;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.horario-card {
+  background: var(--c-card);
+  border: 1px solid var(--c-border);
+  border-radius: var(--radius-lg);
+  padding: 32px;
+  transition: border-color var(--duration), transform var(--duration), box-shadow var(--duration);
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.horario-card:hover {
+  border-color: var(--c-red);
+  transform: translateY(-4px);
+  box-shadow: 0 12px 48px rgba(0,0,0,0.4);
+}
+
+.horario-card-alt {
+  border-color: var(--c-gold);
+}
+
+.horario-card-alt:hover {
+  border-color: var(--c-gold);
+  box-shadow: 0 12px 48px rgba(201,168,76,0.15);
+}
+
+.horario-card-header {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.horario-icon {
+  font-size: 2rem;
+  width: 56px;
+  height: 56px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--c-glass-b);
+  border-radius: 12px;
+}
+
+.horario-category {
+  font-family: var(--font-heading);
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: var(--c-white);
+}
+
+.horario-desc {
+  font-size: 0.82rem;
+  color: var(--c-muted);
+  margin-top: 2px;
+}
+
+.horario-dias {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.horario-dia {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding-bottom: 14px;
+  border-bottom: 1px solid var(--c-border);
+}
+
+.horario-dia:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+.dia-label {
+  font-family: var(--font-heading);
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--c-muted);
+}
+
+.horario-times {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.time-badge {
+  background: var(--c-red);
+  color: var(--c-white);
+  font-family: var(--font-heading);
+  font-size: 0.85rem;
+  font-weight: 700;
+  padding: 4px 12px;
+  border-radius: 6px;
+  letter-spacing: 0.05em;
+}
+
+.horario-card-alt .time-badge {
+  background: transparent;
+  color: var(--c-gold);
+  border: 1px solid var(--c-gold);
+}
+
+/* ============================================================
+   DIFERENCIAIS
+   ============================================================ */
+.diferenciais-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 24px;
+}
+
+.diferencial-card {
+  background: var(--c-card);
+  border: 1px solid var(--c-border);
+  border-radius: var(--radius-lg);
+  padding: 32px 28px;
+  transition: border-color var(--duration), transform var(--duration), box-shadow var(--duration);
+  position: relative;
+  overflow: hidden;
+}
+
+.diferencial-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 3px;
+  background: var(--c-red);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.4s var(--ease);
+}
+
+.diferencial-card:hover::before { transform: scaleX(1); }
+
+.diferencial-card:hover {
+  border-color: var(--c-red);
+  transform: translateY(-4px);
+  box-shadow: 0 16px 48px rgba(0,0,0,0.4);
+}
+
+.diferencial-icon {
+  font-size: 2.2rem;
+  margin-bottom: 16px;
+}
+
+.diferencial-titulo {
+  font-family: var(--font-heading);
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--c-white);
+  margin-bottom: 10px;
+}
+
+.diferencial-desc {
+  font-size: 0.9rem;
+  color: var(--c-muted);
+  line-height: 1.6;
+}
+
+/* ============================================================
+   GALERIA — grade fixa de 3 colunas (uma foto por célula)
+   ============================================================ */
+.galeria-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+}
+
+.galeria-item {
+  position: relative;
+  aspect-ratio: 1;
+  border-radius: var(--radius);
+  overflow: hidden;
+  cursor: pointer;
+  background: var(--c-card);
+  border: 1px solid var(--c-border);
+}
+
+.galeria-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s var(--ease), filter 0.5s;
+}
+
+.galeria-item:hover img {
+  transform: scale(1.08);
+  filter: brightness(0.7);
+}
+
+.galeria-overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity var(--duration);
+  background: rgba(0,0,0,0.3);
+}
+
+.galeria-item:hover .galeria-overlay {
+  opacity: 1;
+}
+
+/* Placeholder quando imagem não carrega */
+.galeria-placeholder {
+  background: linear-gradient(135deg, var(--c-card), var(--c-bg-3));
+  border-color: var(--c-border);
+}
+
+/* Lightbox */
+.lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 2000;
+  background: rgba(0,0,0,0.95);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  backdrop-filter: blur(8px);
+}
+
+.lightbox[hidden] { display: none; }
+
+.lightbox-content {
+  max-width: min(90vw, 900px);
+  max-height: 90svh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.lightbox-content img {
+  max-width: 100%;
+  max-height: 90svh;
+  object-fit: contain;
+  border-radius: var(--radius);
+  box-shadow: 0 24px 80px rgba(0,0,0,0.8);
+}
+
+.lightbox-close,
+.lightbox-prev,
+.lightbox-next {
+  position: absolute;
+  background: var(--c-glass-b);
+  border: 1px solid var(--c-border);
+  color: var(--c-white);
+  border-radius: 50%;
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.4rem;
+  transition: background var(--duration), transform var(--duration);
+  backdrop-filter: blur(8px);
+}
+
+.lightbox-close { top: 20px; right: 20px; }
+.lightbox-prev  { left: 20px; top: 50%; transform: translateY(-50%); }
+.lightbox-next  { right: 20px; top: 50%; transform: translateY(-50%); }
+
+.lightbox-close:hover,
+.lightbox-prev:hover,
+.lightbox-next:hover {
+  background: var(--c-red);
+  border-color: var(--c-red);
+}
+
+.lightbox-prev:hover { transform: translateY(-50%) scale(1.1); }
+.lightbox-next:hover { transform: translateY(-50%) scale(1.1); }
+
+/* ============================================================
+   EVENTOS
+   ============================================================ */
+.eventos-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 24px;
+}
+
+.evento-card {
+  background: var(--c-card);
+  border: 1px solid var(--c-border);
+  border-radius: var(--radius-lg);
+  padding: 28px;
+  display: flex;
+  gap: 20px;
+  position: relative;
+  transition: border-color var(--duration), transform var(--duration);
+}
+
+.evento-card:hover {
+  border-color: var(--c-red);
+  transform: translateY(-3px);
+}
+
+.evento-destaque {
+  border-color: var(--c-gold);
+  background: linear-gradient(135deg, rgba(201,168,76,0.06), var(--c-card));
+}
+
+.evento-destaque:hover { border-color: var(--c-gold); }
+
+.evento-badge {
+  position: absolute;
+  top: -1px; right: 20px;
+  background: var(--c-gold);
+  color: #000;
+  font-family: var(--font-heading);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 4px 12px;
+  border-radius: 0 0 8px 8px;
+}
+
+.evento-icon {
+  font-size: 2rem;
+  flex-shrink: 0;
+  width: 52px;
+  height: 52px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--c-glass-b);
+  border-radius: 12px;
+}
+
+.evento-titulo {
+  font-family: var(--font-heading);
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--c-white);
+  margin-bottom: 6px;
+}
+
+.evento-data {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.82rem;
+  color: var(--c-red);
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+
+.evento-desc {
+  font-size: 0.88rem;
+  color: var(--c-muted);
+  line-height: 1.6;
+}
+
+/* ============================================================
+   DEPOIMENTOS
+   ============================================================ */
+.depoimentos-track {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 24px;
+}
+
+.depoimento-card {
+  background: var(--c-card);
+  border: 1px solid var(--c-border);
+  border-radius: var(--radius-lg);
+  padding: 28px;
+  transition: border-color var(--duration), transform var(--duration);
+}
+
+.depoimento-card:hover {
+  border-color: var(--c-red);
+  transform: translateY(-3px);
+}
+
+.depoimento-header {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 16px;
+}
+
+.depoimento-avatar {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: var(--c-red);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 1rem;
+  color: var(--c-white);
+  flex-shrink: 0;
+}
+
+.depoimento-nome {
+  display: block;
+  font-family: var(--font-heading);
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--c-white);
+}
+
+.depoimento-faixa {
+  font-size: 0.78rem;
+  color: var(--c-muted);
+}
+
+.depoimento-stars {
+  color: var(--c-gold);
+  font-size: 0.9rem;
+  letter-spacing: 2px;
+  margin-bottom: 14px;
+}
+
+.depoimento-texto {
+  font-size: 0.9rem;
+  color: var(--c-muted);
+  line-height: 1.7;
+  font-style: normal;
+}
+
+/* ============================================================
+   CADASTRO / FORMULÁRIO
+   ============================================================ */
+.form-wrapper {
+  max-width: 800px;
+  margin: 0 auto;
+  background: var(--c-card);
+  border: 1px solid var(--c-border);
+  border-radius: var(--radius-lg);
+  padding: 48px;
+}
+
+.cadastro-form { display: flex; flex-direction: column; gap: 24px; }
+
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.form-group label {
+  font-family: var(--font-heading);
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: var(--c-text);
+  letter-spacing: 0.04em;
+}
+
+.required { color: var(--c-red); }
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+  background: var(--c-bg-3);
+  border: 1.5px solid var(--c-border);
+  border-radius: 10px;
+  padding: 12px 16px;
+  color: var(--c-white);
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  transition: border-color var(--duration), box-shadow var(--duration);
+  outline: none;
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+.form-group select {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%23888' stroke-width='2'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 14px center;
+  padding-right: 40px;
+}
+
+.form-group select option {
+  background: var(--c-bg-2);
+  color: var(--c-white);
+}
+
+.form-group textarea { resize: vertical; min-height: 100px; }
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+  border-color: var(--c-red);
+  box-shadow: 0 0 0 3px var(--c-red-glow);
+}
+
+.form-group input.error,
+.form-group select.error {
+  border-color: #ff4444;
+}
+
+.form-group input::placeholder,
+.form-group textarea::placeholder {
+  color: var(--c-muted);
+}
+
+.field-error {
+  font-size: 0.78rem;
+  color: #ff6666;
+  display: none;
+}
+
+.field-error.visible { display: block; }
+
+/* Radio Group */
+.radio-group {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+  padding-top: 4px;
+}
+
+.radio-label {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+  font-size: 0.95rem;
+  color: var(--c-text);
+  padding: 10px 20px;
+  border: 1.5px solid var(--c-border);
+  border-radius: 10px;
+  transition: border-color var(--duration), background var(--duration);
+}
+
+.radio-label:has(input:checked) {
+  border-color: var(--c-red);
+  background: var(--c-red-glow);
+}
+
+.radio-label input[type="radio"] {
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.radio-custom {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  border: 2px solid var(--c-border);
+  position: relative;
+  transition: border-color var(--duration);
+  flex-shrink: 0;
+}
+
+.radio-label:has(input:checked) .radio-custom {
+  border-color: var(--c-red);
+}
+
+.radio-label:has(input:checked) .radio-custom::after {
+  content: '';
+  position: absolute;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  width: 8px; height: 8px;
+  border-radius: 50%;
+  background: var(--c-red);
+}
+
+.form-submit {
+  display: flex;
+  justify-content: center;
+  padding-top: 8px;
+}
+
+/* Spinner */
+.spinner {
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  border: 2px solid rgba(255,255,255,0.3);
+  border-top-color: white;
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+  vertical-align: middle;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+.global-form-error {
+  background: rgba(255,68,68,0.1);
+  border: 1px solid rgba(255,68,68,0.3);
+  border-radius: 8px;
+  padding: 12px 16px;
+  font-size: 0.88rem;
+  color: #ff8888;
+  margin-bottom: 8px;
+}
+
+/* Sucesso */
+.form-success {
+  text-align: center;
+  padding: 48px 24px;
+}
+
+.form-success[hidden] { display: none; }
+
+.success-icon {
+  width: 80px;
+  height: 80px;
+  margin: 0 auto 28px;
+}
+
+.success-icon svg {
+  width: 100%;
+  height: 100%;
+}
+
+.form-success h3 {
+  font-family: var(--font-heading);
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: var(--c-white);
+  margin-bottom: 12px;
+}
+
+.form-success p {
+  color: var(--c-muted);
+  margin-bottom: 28px;
+  line-height: 1.7;
+}
+
+/* ============================================================
+   FOOTER
+   ============================================================ */
+footer {
+  background: var(--c-bg-2);
+  border-top: 1px solid var(--c-border);
+}
+
+.footer-top {
+  padding: 64px 0;
+}
+
+.footer-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr;
+  gap: 48px;
+  align-items: start;
+}
+
+.footer-logo {
+  height: 48px;
+  width: auto;
+  object-fit: contain;
+  margin-bottom: 16px;
+}
+
+.footer-logo-text {
+  font-family: var(--font-display);
+  font-size: 1.8rem;
+  color: var(--c-white);
+  display: inline-block;
+  margin-bottom: 16px;
+}
+
+.footer-logo-text span { color: var(--c-red); }
+
+.footer-tagline {
+  font-size: 0.9rem;
+  color: var(--c-muted);
+  margin-bottom: 24px;
+  line-height: 1.6;
+  max-width: 300px;
+}
+
+.footer-social {
+  display: flex;
+  gap: 12px;
+}
+
+.social-link {
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  background: var(--c-glass-b);
+  border: 1px solid var(--c-border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--c-muted);
+  transition: background var(--duration), color var(--duration), border-color var(--duration);
+}
+
+.social-link svg { width: 18px; height: 18px; }
+
+.social-link:hover {
+  background: var(--c-red);
+  border-color: var(--c-red);
+  color: var(--c-white);
+}
+
+.footer-nav h4,
+.footer-contact h4 {
+  font-family: var(--font-heading);
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--c-white);
+  margin-bottom: 20px;
+}
+
+.footer-nav ul li {
+  margin-bottom: 10px;
+}
+
+.footer-nav ul li a {
+  font-size: 0.88rem;
+  color: var(--c-muted);
+  transition: color var(--duration);
+}
+
+.footer-nav ul li a:hover {
+  color: var(--c-white);
+}
+
+.footer-contact address p {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 0.88rem;
+  color: var(--c-muted);
+  margin-bottom: 10px;
+}
+
+.footer-contact address svg {
+  color: var(--c-red);
+  flex-shrink: 0;
+}
+
+.footer-bottom {
+  border-top: 1px solid var(--c-border);
+  padding: 20px 0;
+}
+
+.footer-bottom .container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.footer-bottom p {
+  font-size: 0.8rem;
+  color: var(--c-muted);
+}
+
+/* ============================================================
+   RESPONSIVO
+   ============================================================ */
+@media (max-width: 1024px) {
+  .sobre-grid {
+    grid-template-columns: 1fr;
+    gap: 60px;
+  }
+
+  .sobre-badge-float {
+    bottom: -16px;
+    right: -8px;
+  }
+
+  .footer-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .footer-brand {
+    grid-column: 1 / -1;
+  }
+}
+
+@media (max-width: 768px) {
+  :root { --section-py: 64px; }
+
+  .nav-links {
+    position: fixed;
+    top: var(--nav-h);
+    left: 0; right: 0;
+    background: rgba(10,10,10,0.97);
+    backdrop-filter: blur(20px);
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0;
+    padding: 16px;
+    transform: translateY(-110%);
+    transition: transform 0.4s var(--ease);
+    border-bottom: 1px solid var(--c-border);
+  }
+
+  .nav-links.open {
+    transform: translateY(0);
+  }
+
+  .nav-links li a {
+    padding: 14px 16px;
+    font-size: 1.1rem;
+    border-radius: 8px;
+  }
+
+  .nav-toggle { display: flex; }
+
+  .hero-stats {
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .stat-divider {
+    width: 40px;
+    height: 1px;
+    margin: 0 auto;
+  }
+
+  .form-row {
+    grid-template-columns: 1fr;
+  }
+
+  .form-wrapper {
+    padding: 28px 20px;
+  }
+
+  .footer-grid {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+
+  .footer-bottom .container {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .sobre-badge-float {
+    position: static;
+    display: inline-flex;
+    margin-top: 16px;
+    align-self: flex-start;
+  }
+
+  .sobre-visual {
+    display: flex;
+    flex-direction: column;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero-actions {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .btn-lg { width: 100%; justify-content: center; }
+
+  .horarios-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .valores-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ============================================================
+   PREFERÊNCIA: MOVIMENTO REDUZIDO
+   ============================================================ */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+
+  .reveal-up, .reveal-left, .reveal-right {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+</style>
+</head>
+<body>
+
+  <!-- ===================== LOADER ===================== -->
+  <div id="loader" aria-hidden="true">
+    <div class="loader-inner">
+      <div class="loader-logo">DG<span>TEAM</span></div>
+      <div class="loader-bar"><div class="loader-fill"></div></div>
+    </div>
+  </div>
+
+  <!-- ===================== NAVBAR ===================== -->
+  <nav id="navbar" role="navigation" aria-label="Menu principal">
+    <div class="nav-container">
+      <a href="#hero" class="nav-logo" aria-label="DG Team Muay Thai - Início">
+        <img src="img/logo.png" alt="DG Team logo" class="nav-logo-img" onerror="this.style.display='none'; this.nextElementSibling.style.display='block'"/>
+        <span class="nav-logo-text" style="display:none">DG<span>TEAM</span></span>
+      </a>
+      <button class="nav-toggle" id="navToggle" aria-label="Abrir menu" aria-expanded="false" aria-controls="navMenu">
+        <span></span><span></span><span></span>
+      </button>
+      <ul class="nav-links" id="navMenu" role="list">
+        <li><a href="#sobre">Sobre</a></li>
+        <li><a href="#horarios">Horários</a></li>
+        <li><a href="#diferenciais">Diferenciais</a></li>
+        <li><a href="#galeria">Galeria</a></li>
+        <li><a href="#eventos">Eventos</a></li>
+        <li><a href="#cadastro" class="nav-cta">Cadastrar-se</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- ===================== HERO ===================== -->
+  <section id="hero" aria-label="Seção principal">
+    <div class="hero-bg" aria-hidden="true">
+      <div class="hero-overlay"></div>
+      <div class="hero-particles" id="heroParticles"></div>
+    </div>
+    <div class="hero-content">
+      <div class="hero-badge reveal-up">
+        <span class="badge-dot"></span>
+        Há 13 anos formando campeões
+      </div>
+      <h1 class="hero-title reveal-up">
+        Forjado no<br />
+        <span class="hero-highlight">Muay Thai.</span><br />
+        Construído para<br />vencer.
+      </h1>
+      <p class="hero-subtitle reveal-up">
+        Disciplina, respeito e evolução dentro e fora do tatame.<br />
+        Junte-se à família DG TEAM.
+      </p>
+      <div class="hero-actions reveal-up">
+        <a href="#cadastro" class="btn btn-primary">
+          <span>Quero Treinar</span>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+        <a href="#horarios" class="btn btn-ghost">
+          <span>Ver Horários</span>
+        </a>
+      </div>
+    </div>
+    <a href="#sobre" class="hero-scroll" aria-label="Rolar para baixo">
+      <span></span>
+    </a>
+  </section>
+
+  <!-- ===================== SOBRE ===================== -->
+  <section id="sobre" class="section" aria-labelledby="sobre-title">
+    <div class="container">
+      <div class="sobre-grid">
+        <div class="sobre-visual reveal-left">
+          <div class="sobre-img-frame">
+            <img src="img/treinador.jpg" alt="Treinador Diguinho" class="sobre-img" loading="lazy" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22500%22><rect fill=%22%23111%22 width=%22400%22 height=%22500%22/><text x=%2250%%25%22 y=%2250%%25%22 font-family=%22Arial%22 font-size=%2220%22 fill=%22%23c00%22 text-anchor=%22middle%22 dominant-baseline=%22middle%22>Treinador Diguinho</text></svg>'" />
+            <div class="sobre-img-accent" aria-hidden="true"></div>
+          </div>
+          <div class="sobre-badge-float reveal-up">
+            <span class="badge-years">13</span>
+            <span class="badge-text">anos de<br/>excelência</span>
+          </div>
+        </div>
+        <div class="sobre-content reveal-right">
+          <span class="section-eyebrow">Nossa História</span>
+          <h2 id="sobre-title" class="section-title">Uma jornada construída com suor e dedicação</h2>
+          <p class="sobre-text">
+            Em 2013, o treinador <strong>Diguinho</strong> fundou a DG TEAM com uma visão clara: criar um lugar onde o Muay Thai fosse mais do que um esporte — um caminho de transformação pessoal. Ao longo de <strong>13 anos</strong>, a academia se tornou referência na região, formando atletas que competem em nível regional e nacional.
+          </p>
+          <p class="sobre-text">
+            Com uma metodologia única que une técnica apurada, condicionamento físico de alto nível e valores humanos sólidos, a DG TEAM recebe alunos de todas as idades e objetivos — do iniciante ao atleta competitivo.
+          </p>
+          <div class="valores-grid">
+            <div class="valor-card">
+              <div class="valor-icon" aria-hidden="true">🥊</div>
+              <h3>Disciplina</h3>
+              <p>Construindo hábitos que transformam vidas</p>
+            </div>
+            <div class="valor-card">
+              <div class="valor-icon" aria-hidden="true">🤝</div>
+              <h3>Respeito</h3>
+              <p>Na academia e além do tatame</p>
+            </div>
+            <div class="valor-card">
+              <div class="valor-icon" aria-hidden="true">❤️</div>
+              <h3>Família</h3>
+              <p>Uma equipe unida como família</p>
+            </div>
+            <div class="valor-card">
+              <div class="valor-icon" aria-hidden="true">⚡</div>
+              <h3>Superação</h3>
+              <p>Quebrando seus próprios limites</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== HORÁRIOS ===================== -->
+  <section id="horarios" class="section section-dark" aria-labelledby="horarios-title">
+    <div class="container">
+      <div class="section-header reveal-up">
+        <span class="section-eyebrow">Programação</span>
+        <h2 id="horarios-title" class="section-title">Horários das Aulas</h2>
+        <p class="section-subtitle">Encontre o horário ideal para a sua rotina</p>
+      </div>
+      <div class="horarios-grid">
+        <!-- Adultos -->
+        <div class="horario-card reveal-up">
+          <div class="horario-card-header">
+            <div class="horario-icon" aria-hidden="true">🥊</div>
+            <div>
+              <h3 class="horario-category">Adultos</h3>
+              <p class="horario-desc">A partir de 16 anos</p>
+            </div>
+          </div>
+          <div class="horario-dias">
+            <div class="horario-dia">
+              <span class="dia-label">Segunda-feira</span>
+              <div class="horario-times">
+                <span class="time-badge">19:00</span>
+                <span class="time-badge">20:00</span>
+              </div>
+            </div>
+            <div class="horario-dia">
+              <span class="dia-label">Quarta-feira</span>
+              <div class="horario-times">
+                <span class="time-badge">19:00</span>
+                <span class="time-badge">20:00</span>
+              </div>
+            </div>
+            <div class="horario-dia">
+              <span class="dia-label">Sexta-feira</span>
+              <div class="horario-times">
+                <span class="time-badge">19:00</span>
+              </div>
+            </div>
+          </div>
+          <a href="#cadastro" class="btn btn-primary btn-sm">Quero me Matricular</a>
+        </div>
+        <!-- Crianças -->
+        <div class="horario-card horario-card-alt reveal-up">
+          <div class="horario-card-header">
+            <div class="horario-icon" aria-hidden="true">⭐</div>
+            <div>
+              <h3 class="horario-category">Crianças</h3>
+              <p class="horario-desc">A partir de 6 anos</p>
+            </div>
+          </div>
+          <div class="horario-dias">
+            <div class="horario-dia">
+              <span class="dia-label">Segunda-feira</span>
+              <div class="horario-times">
+                <span class="time-badge">18:00</span>
+              </div>
+            </div>
+            <div class="horario-dia">
+              <span class="dia-label">Quarta-feira</span>
+              <div class="horario-times">
+                <span class="time-badge">18:00</span>
+              </div>
+            </div>
+          </div>
+          <a href="#cadastro" class="btn btn-primary btn-sm">Quero me Matricular</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== DIFERENCIAIS ===================== -->
+  <section id="diferenciais" class="section" aria-labelledby="diferenciais-title">
+    <div class="container">
+      <div class="section-header reveal-up">
+        <span class="section-eyebrow">Por que nos escolher</span>
+        <h2 id="diferenciais-title" class="section-title">O que nos torna únicos</h2>
+        <p class="section-subtitle">13 anos construindo excelência, um aluno de cada vez</p>
+      </div>
+      <div class="diferenciais-grid" id="diferenciaisGrid">
+        <!-- Preenchido via JS -->
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== GALERIA ===================== -->
+  <section id="galeria" class="section section-dark" aria-labelledby="galeria-title">
+    <div class="container">
+      <div class="section-header reveal-up">
+        <span class="section-eyebrow">Momentos</span>
+        <h2 id="galeria-title" class="section-title">Nossa Galeria</h2>
+        <p class="section-subtitle">Registros da nossa família DG TEAM</p>
+      </div>
+      <div class="galeria-grid" id="galeriaGrid" role="list">
+        <!-- Preenchido via JS -->
+      </div>
+    </div>
+    <!-- Lightbox -->
+    <div id="lightbox" class="lightbox" role="dialog" aria-modal="true" aria-label="Visualizador de imagem" hidden>
+      <button class="lightbox-close" id="lightboxClose" aria-label="Fechar">&times;</button>
+      <button class="lightbox-prev" id="lightboxPrev" aria-label="Anterior">&#8249;</button>
+      <button class="lightbox-next" id="lightboxNext" aria-label="Próxima">&#8250;</button>
+      <div class="lightbox-content">
+        <img id="lightboxImg" src="" alt="Foto ampliada" />
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== EVENTOS ===================== -->
+  <section id="eventos" class="section" aria-labelledby="eventos-title">
+    <div class="container">
+      <div class="section-header reveal-up">
+        <span class="section-eyebrow">Agenda</span>
+        <h2 id="eventos-title" class="section-title">Próximos Eventos</h2>
+        <p class="section-subtitle">Fique por dentro da programação da DG TEAM</p>
+      </div>
+      <div class="eventos-grid" id="eventosGrid">
+        <!-- Preenchido via JS -->
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== CADASTRO ===================== -->
+  <section id="cadastro" class="section" aria-labelledby="cadastro-title">
+    <div class="container">
+      <div class="section-header reveal-up">
+        <span class="section-eyebrow">Faça parte</span>
+        <h2 id="cadastro-title" class="section-title">Comece sua jornada hoje</h2>
+        <p class="section-subtitle">Preencha o formulário e entraremos em contato em breve</p>
+      </div>
+      <div class="form-wrapper reveal-up">
+        <form id="cadastroForm" class="cadastro-form" novalidate aria-label="Formulário de cadastro">
+
+          <!-- Linha 1 -->
+          <div class="form-row">
+            <div class="form-group">
+              <label for="nome">Nome Completo <span class="required" aria-label="obrigatório">*</span></label>
+              <input type="text" id="nome" name="nome" placeholder="Seu nome completo" required autocomplete="name" />
+              <span class="field-error" role="alert"></span>
+            </div>
+            <div class="form-group">
+              <label for="idade">Idade <span class="required" aria-label="obrigatório">*</span></label>
+              <input type="number" id="idade" name="idade" placeholder="Sua idade" min="4" max="90" required />
+              <span class="field-error" role="alert"></span>
+            </div>
+          </div>
+
+          <!-- Linha 2 -->
+          <div class="form-row">
+            <div class="form-group">
+              <label for="telefone">Telefone <span class="required" aria-label="obrigatório">*</span></label>
+              <input type="tel" id="telefone" name="telefone" placeholder="(00) 0000-0000" required autocomplete="tel" />
+              <span class="field-error" role="alert"></span>
+            </div>
+            <div class="form-group">
+              <label for="whatsapp">WhatsApp <span class="required" aria-label="obrigatório">*</span></label>
+              <input type="tel" id="whatsapp" name="whatsapp" placeholder="(00) 00000-0000" required />
+              <span class="field-error" role="alert"></span>
+            </div>
+          </div>
+
+          <!-- Linha 3 -->
+          <div class="form-row">
+            <div class="form-group">
+              <label for="sexo">Sexo <span class="required" aria-label="obrigatório">*</span></label>
+              <select id="sexo" name="sexo" required>
+                <option value="">Selecione</option>
+                <option value="Masculino">Masculino</option>
+                <option value="Feminino">Feminino</option>
+                <option value="Prefiro não informar">Prefiro não informar</option>
+              </select>
+              <span class="field-error" role="alert"></span>
+            </div>
+            <div class="form-group">
+              <label for="faixa">Faixa (caso possua)</label>
+              <select id="faixa" name="faixa">
+                <option value="Sem faixa">Sem faixa / Iniciante</option>
+                <option value="Branca">Branca</option>
+                <option value="Amarela">Amarela</option>
+                <option value="Laranja">Laranja</option>
+                <option value="Verde">Verde</option>
+                <option value="Azul">Azul</option>
+                <option value="Roxa">Roxa</option>
+                <option value="Marrom">Marrom</option>
+                <option value="Vermelha">Vermelha</option>
+                <option value="Preta">Preta</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- Linha 4 -->
+          <div class="form-row">
+            <div class="form-group">
+              <label for="peso">Peso (kg)</label>
+              <input type="number" id="peso" name="peso" placeholder="Ex: 75" min="20" max="200" step="0.1" />
+            </div>
+            <div class="form-group">
+              <label for="altura">Altura (cm)</label>
+              <input type="number" id="altura" name="altura" placeholder="Ex: 175" min="100" max="230" />
+            </div>
+          </div>
+
+          <!-- Experiência -->
+          <div class="form-group">
+            <label>Possui experiência em artes marciais? <span class="required" aria-label="obrigatório">*</span></label>
+            <div class="radio-group" role="radiogroup" aria-label="Experiência em artes marciais">
+              <label class="radio-label">
+                <input type="radio" name="experiencia" value="Sim" required />
+                <span class="radio-custom" aria-hidden="true"></span>
+                Sim
+              </label>
+              <label class="radio-label">
+                <input type="radio" name="experiencia" value="Não" required />
+                <span class="radio-custom" aria-hidden="true"></span>
+                Não
+              </label>
+            </div>
+            <span class="field-error" role="alert" id="experienciaError"></span>
+          </div>
+
+          <!-- Responsável -->
+          <div class="form-group" id="responsavelGroup" style="display:none">
+            <label for="responsavel">Nome do Responsável (menores de 18 anos)</label>
+            <input type="text" id="responsavel" name="responsavel" placeholder="Nome completo do responsável" autocomplete="name" />
+          </div>
+
+          <!-- Observações -->
+          <div class="form-group">
+            <label for="observacoes">Observações</label>
+            <textarea id="observacoes" name="observacoes" placeholder="Alguma observação, lesão, objetivo ou dúvida..." rows="4"></textarea>
+          </div>
+
+          <!-- Submit -->
+          <div class="form-submit">
+            <button type="submit" class="btn btn-primary btn-lg" id="submitBtn">
+              <span class="btn-text">Quero fazer parte da DG TEAM</span>
+              <span class="btn-loading" aria-hidden="true" hidden>
+                <span class="spinner"></span> Enviando...
+              </span>
+            </button>
+          </div>
+        </form>
+
+        <!-- Sucesso -->
+        <div id="formSuccess" class="form-success" hidden role="status" aria-live="polite">
+          <div class="success-icon" aria-hidden="true">
+            <svg viewBox="0 0 52 52" fill="none">
+              <circle cx="26" cy="26" r="25" stroke="#c00" stroke-width="2"/>
+              <path class="checkmark" d="M14 27l8 8 16-16" stroke="#c00" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <h3>Cadastro realizado!</h3>
+          <p>Parabéns! Seu cadastro foi enviado com sucesso.<br/>Em breve entraremos em contato pelo WhatsApp.</p>
+          <a href="#hero" class="btn btn-ghost btn-sm">Voltar ao início</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== FOOTER ===================== -->
+  <footer id="footer" role="contentinfo">
+    <div class="footer-top">
+      <div class="container footer-grid">
+        <div class="footer-brand">
+          <img src="img/logo.png" alt="DG Team logo" class="footer-logo" loading="lazy" onerror="this.style.display='none'; this.nextElementSibling.style.display='block'" />
+          <span class="footer-logo-text" style="display:none">DG<span>TEAM</span></span>
+          <p class="footer-tagline">Há 13 anos formando campeões dentro e fora do tatame.</p>
+          <div class="footer-social">
+            <a href="https://instagram.com/dgteammuaythai" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="Instagram DG Team">
+              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+            </a>
+            <a href="https://wa.me/5500000000000" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="WhatsApp DG Team">
+              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+            </a>
+          </div>
+        </div>
+        <div class="footer-nav">
+          <h4>Navegação</h4>
+          <ul role="list">
+            <li><a href="#sobre">Sobre nós</a></li>
+            <li><a href="#horarios">Horários</a></li>
+            <li><a href="#galeria">Galeria</a></li>
+            <li><a href="#eventos">Eventos</a></li>
+            <li><a href="#cadastro">Cadastrar-se</a></li>
+          </ul>
+        </div>
+        <div class="footer-contact">
+          <h4>Contato</h4>
+          <address>
+            <p>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+              Sua cidade – Estado
+            </p>
+            <p>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 13a19.79 19.79 0 01-3.07-8.67A2 2 0 012 2.18h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+              (00) 00000-0000
+            </p>
+          </address>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="container">
+        <p>&copy; <span id="footerYear"></span> DG TEAM Muay Thai. Todos os direitos reservados.</p>
+        <p>Desenvolvido com ❤️ para a família DG TEAM</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script>
+/**
+ * ================================================================
+ * DG TEAM MUAY THAI — config.js
+ * ================================================================
+ * ESTE ARQUIVO É O PAINEL DE CONTROLE DO SEU SITE.
+ * Edite aqui para atualizar conteúdo sem mexer no HTML ou CSS.
+ * ================================================================
+ */
+
+// ================================================================
+// 1. CONFIGURAÇÃO AIRTABLE
+// ================================================================
+const CONFIG = {
+  AIRTABLE_TOKEN:  "patM675tuxosPWeWC.2e49eaf14ee80fc0f1fa42d4a87e1aaa6880408516c4ae3de19d057003112e9a",
+  AIRTABLE_BASE:   "appXj5xYRp1WsYwKo",
+  AIRTABLE_TABLE:  "Table 1",
+  WHATSAPP_NUMBER: "5535998911405",
+  INSTAGRAM_USER:  "dgteammuaythai",
+  ACADEMIA_NOME:   "DG TEAM Muay Thai",
+  ACADEMIA_CIDADE: "Sua cidade – Estado",
+};
+
+
+// ================================================================
+// 2. GALERIA DE FOTOS
+//    Para adicionar uma foto:
+//    1. Coloque o arquivo em /img/galeria/
+//    2. Adicione o nome do arquivo abaixo
+// ================================================================
+// ================================================================
+// GALERIA — apenas 3 fotos são exibidas no site.
+// Substitua os valores de "src" pelos nomes dos seus arquivos
+// dentro da pasta img/galeria/ e atualize o "alt" com a descrição.
+// ================================================================
+const galeria = [
+  { src: "img/galeria/foto1.jpg", alt: "DG TEAM – treino de Muay Thai" },
+  { src: "img/galeria/foto2.jpg", alt: "Alunos em aula" },
+  { src: "img/galeria/foto3.jpg", alt: "Família DG TEAM" },
+];
+
+
+// ================================================================
+// 3. PRÓXIMOS EVENTOS
+//    Para atualizar: edite o array abaixo.
+//    Você NUNCA precisa editar o HTML.
+// ================================================================
+const eventos = [
+  {
+    titulo: "Exame de Faixa",
+    data: "12/09/2026",
+    descricao: "Troca de graduação para alunos que cumpriram os requisitos de frequência e técnica.",
+    icon: "🥋",
+    destaque: true,
+  },
+  {
+    titulo: "Campeonato Regional",
+    data: "20/10/2026",
+    descricao: "Competição oficial com atletas de toda a região. Inscrições abertas para alunos da DG TEAM.",
+    icon: "🏆",
+    destaque: false,
+  },
+  {
+    titulo: "Workshop de Defesa Pessoal",
+    data: "08/11/2026",
+    descricao: "Aula aberta gratuita de técnicas básicas de defesa pessoal para toda a família.",
+    icon: "🛡️",
+    destaque: false,
+  },
+  // Adicione mais eventos aqui:
+  // {
+  //   titulo: "Nome do Evento",
+  //   data: "DD/MM/AAAA",
+  //   descricao: "Descrição do evento.",
+  //   icon: "🎯",
+  //   destaque: false,
+  // },
+];
+
+
+// ================================================================
+// 5. DIFERENCIAIS
+//    Edite ícones, títulos e descrições.
+// ================================================================
+const diferenciais = [
+  {
+    icon: "🏆",
+    titulo: "13 Anos de Tradição",
+    descricao: "Uma história construída com dedicação, resultados e alunos que se tornaram campeões.",
+  },
+  {
+    icon: "👊",
+    titulo: "Treinador Experiente",
+    descricao: "Prof. Diguinho é referência no Muay Thai com formação sólida e resultados comprovados.",
+  },
+  {
+    icon: "❤️",
+    titulo: "Ambiente Familiar",
+    descricao: "Aqui você não é apenas um aluno — você faz parte de uma família unida pelo esporte.",
+  },
+  {
+    icon: "⭐",
+    titulo: "Aulas para Crianças",
+    descricao: "Metodologia especial para desenvolver disciplina, coordenação e autoconfiança nos pequenos.",
+  },
+  {
+    icon: "💪",
+    titulo: "Aulas para Adultos",
+    descricao: "Treinos de alto nível para todos os objetivos: condicionamento, autodefesa ou competição.",
+  },
+  {
+    icon: "📈",
+    titulo: "Evolução Constante",
+    descricao: "Sistema de graduação claro e acompanhamento personalizado do seu progresso.",
+  },
+];
+
+
+/**
+ * ================================================================
+ * DG TEAM MUAY THAI — script.js
+ * ================================================================
+ * Módulos:
+ *   1. Loader
+ *   2. Navbar (scroll + mobile toggle)
+ *   3. Hero (partículas + contadores)
+ *   4. Scroll Reveal
+ *   5. Diferenciais (renderizar via array)
+ *   6. Galeria (renderizar + Lightbox)
+ *   7. Eventos (renderizar via array)
+ *   8. Depoimentos (slider)
+ *   9. Formulário (validação + envio para Google Sheets)
+ *  10. Footer (ano atual)
+ * ================================================================
+ */
+
+(function () {
+  "use strict";
+
+  /* ============================================================
+   * 1. LOADER
+   * ============================================================ */
+  function initLoader() {
+    const loader = document.getElementById("loader");
+    if (!loader) return;
+
+    let hidden = false;
+    const hide = () => {
+      if (hidden) return;
+      hidden = true;
+      loader.classList.add("loader-hidden");
+      loader.addEventListener("transitionend", () => loader.remove(), { once: true });
+      // Garantia extra: se por algum motivo o transitionend não disparar
+      // (ex: usuário trocou de aba), remove o loader do DOM de qualquer forma.
+      setTimeout(() => loader.remove(), 800);
+    };
+
+    window.addEventListener("load", () => setTimeout(hide, 800));
+    // Rede de segurança: nunca deixar a tela de loading travada por mais
+    // de ~3s, mesmo se o evento "load" demorar (ex: fonte externa lenta).
+    setTimeout(hide, 3000);
+  }
+
+  /* ============================================================
+   * 2. NAVBAR
+   * ============================================================ */
+  function initNavbar() {
+    const navbar = document.getElementById("navbar");
+    const toggle = document.getElementById("navToggle");
+    const menu = document.getElementById("navMenu");
+    const links = menu ? menu.querySelectorAll("a") : [];
+
+    if (!navbar) return;
+
+    // Scroll effect
+    let lastScroll = 0;
+    window.addEventListener("scroll", () => {
+      const currentScroll = window.scrollY;
+      navbar.classList.toggle("scrolled", currentScroll > 60);
+      navbar.classList.toggle("nav-hidden", currentScroll > lastScroll && currentScroll > 200);
+      lastScroll = currentScroll;
+    }, { passive: true });
+
+    // Mobile toggle
+    if (toggle && menu) {
+      toggle.addEventListener("click", () => {
+        const open = menu.classList.toggle("open");
+        toggle.classList.toggle("active", open);
+        toggle.setAttribute("aria-expanded", open);
+      });
+
+      // Fechar ao clicar em link
+      links.forEach(link => {
+        link.addEventListener("click", () => {
+          menu.classList.remove("open");
+          toggle.classList.remove("active");
+          toggle.setAttribute("aria-expanded", "false");
+        });
+      });
+    }
+
+    // Active link on scroll
+    const sections = document.querySelectorAll("section[id]");
+    const navLinks = document.querySelectorAll(".nav-links a[href^='#']");
+
+    const observerNav = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          navLinks.forEach(l => l.classList.remove("active"));
+          const active = document.querySelector(`.nav-links a[href="#${entry.target.id}"]`);
+          if (active) active.classList.add("active");
+        }
+      });
+    }, { threshold: 0.4 });
+
+    sections.forEach(s => observerNav.observe(s));
+  }
+
+  /* ============================================================
+   * 3. HERO — partículas + contadores
+   * ============================================================ */
+  function initHeroParticles() {
+    const container = document.getElementById("heroParticles");
+    if (!container) return;
+
+    const PARTICLE_COUNT = 40;
+
+    for (let i = 0; i < PARTICLE_COUNT; i++) {
+      const p = document.createElement("span");
+      p.className = "particle";
+      p.style.cssText = `
+        left: ${Math.random() * 100}%;
+        top: ${Math.random() * 100}%;
+        width: ${Math.random() * 3 + 1}px;
+        height: ${Math.random() * 3 + 1}px;
+        animation-delay: ${Math.random() * 6}s;
+        animation-duration: ${Math.random() * 8 + 6}s;
+        opacity: ${Math.random() * 0.6 + 0.1};
+      `;
+      container.appendChild(p);
+    }
+  }
+
+  function initCounters() {
+    const counters = document.querySelectorAll(".stat-num[data-target]");
+    if (!counters.length) return;
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (!entry.isIntersecting) return;
+        const el = entry.target;
+        const target = parseInt(el.dataset.target, 10);
+        const duration = 1800;
+        const step = Math.ceil(target / (duration / 16));
+        let current = 0;
+
+        const tick = () => {
+          current = Math.min(current + step, target);
+          el.textContent = current;
+          if (current < target) requestAnimationFrame(tick);
+        };
+
+        requestAnimationFrame(tick);
+        observer.unobserve(el);
+      });
+    }, { threshold: 0.5 });
+
+    counters.forEach(c => observer.observe(c));
+  }
+
+  /* ============================================================
+   * 4. SCROLL REVEAL
+   * ============================================================ */
+  function initScrollReveal() {
+    const classes = [".reveal-up", ".reveal-left", ".reveal-right"];
+    const elements = document.querySelectorAll(classes.join(","));
+
+    if (!elements.length) return;
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("revealed");
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12, rootMargin: "0px 0px -40px 0px" });
+
+    elements.forEach(el => observer.observe(el));
+  }
+
+  /* ============================================================
+   * 5. DIFERENCIAIS
+   * ============================================================ */
+  function renderDiferenciais() {
+    const grid = document.getElementById("diferenciaisGrid");
+    if (!grid || typeof diferenciais === "undefined") return;
+
+    const html = diferenciais.map((d, i) => `
+      <article class="diferencial-card reveal-up" style="animation-delay:${i * 80}ms">
+        <div class="diferencial-icon" aria-hidden="true">${d.icon}</div>
+        <h3 class="diferencial-titulo">${d.titulo}</h3>
+        <p class="diferencial-desc">${d.descricao}</p>
+      </article>
+    `).join("");
+
+    grid.innerHTML = html;
+    initScrollReveal(); // re-observe newly added elements
+  }
+
+  /* ============================================================
+   * 6. GALERIA + LIGHTBOX
+   * ============================================================ */
+  function renderGaleria() {
+    const grid = document.getElementById("galeriaGrid");
+    if (!grid || typeof galeria === "undefined") return;
+
+    const html = galeria.map((foto, i) => `
+      <button
+        class="galeria-item reveal-up"
+        data-index="${i}"
+        role="listitem"
+        aria-label="Ver foto: ${foto.alt}"
+        style="animation-delay:${i * 60}ms"
+      >
+        <img
+          src="${foto.src}"
+          alt="${foto.alt}"
+          loading="lazy"
+          onerror="this.parentElement.classList.add('galeria-placeholder')"
+        />
+        <div class="galeria-overlay" aria-hidden="true">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
+        </div>
+      </button>
+    `).join("");
+
+    grid.innerHTML = html;
+    initScrollReveal();
+    initLightbox();
+  }
+
+  function initLightbox() {
+    const lightbox = document.getElementById("lightbox");
+    const img = document.getElementById("lightboxImg");
+    const closeBtn = document.getElementById("lightboxClose");
+    const prevBtn = document.getElementById("lightboxPrev");
+    const nextBtn = document.getElementById("lightboxNext");
+
+    if (!lightbox || !img) return;
+
+    let currentIndex = 0;
+
+    function openLightbox(index) {
+      currentIndex = index;
+      const foto = galeria[currentIndex];
+      img.src = foto.src;
+      img.alt = foto.alt;
+      lightbox.hidden = false;
+      document.body.style.overflow = "hidden";
+      lightbox.focus();
+    }
+
+    function closeLightbox() {
+      lightbox.hidden = true;
+      document.body.style.overflow = "";
+      img.src = "";
+    }
+
+    function showPrev() {
+      currentIndex = (currentIndex - 1 + galeria.length) % galeria.length;
+      img.src = galeria[currentIndex].src;
+      img.alt = galeria[currentIndex].alt;
+    }
+
+    function showNext() {
+      currentIndex = (currentIndex + 1) % galeria.length;
+      img.src = galeria[currentIndex].src;
+      img.alt = galeria[currentIndex].alt;
+    }
+
+    // Delegação no grid
+    document.getElementById("galeriaGrid").addEventListener("click", e => {
+      const btn = e.target.closest(".galeria-item");
+      if (btn) openLightbox(parseInt(btn.dataset.index, 10));
+    });
+
+    closeBtn.addEventListener("click", closeLightbox);
+    prevBtn.addEventListener("click", showPrev);
+    nextBtn.addEventListener("click", showNext);
+
+    lightbox.addEventListener("click", e => {
+      if (e.target === lightbox) closeLightbox();
+    });
+
+    document.addEventListener("keydown", e => {
+      if (lightbox.hidden) return;
+      if (e.key === "Escape") closeLightbox();
+      if (e.key === "ArrowLeft") showPrev();
+      if (e.key === "ArrowRight") showNext();
+    });
+  }
+
+  /* ============================================================
+   * 7. EVENTOS
+   * ============================================================ */
+  function renderEventos() {
+    const grid = document.getElementById("eventosGrid");
+    if (!grid || typeof eventos === "undefined") return;
+
+    const html = eventos.map((ev, i) => `
+      <article class="evento-card ${ev.destaque ? "evento-destaque" : ""} reveal-up" style="animation-delay:${i * 100}ms">
+        ${ev.destaque ? '<span class="evento-badge">Em destaque</span>' : ""}
+        <div class="evento-icon" aria-hidden="true">${ev.icon}</div>
+        <div class="evento-body">
+          <h3 class="evento-titulo">${ev.titulo}</h3>
+          <time class="evento-data" datetime="${parseDatetime(ev.data)}">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+            ${ev.data}
+          </time>
+          <p class="evento-desc">${ev.descricao}</p>
+        </div>
+      </article>
+    `).join("");
+
+    grid.innerHTML = html;
+    initScrollReveal();
+  }
+
+  function parseDatetime(dateStr) {
+    // "12/09/2026" → "2026-09-12"
+    const [d, m, y] = dateStr.split("/");
+    return `${y}-${m}-${d}`;
+  }
+
+  /* ============================================================
+   * 9. FORMULÁRIO — validação + envio Google Sheets
+   * ============================================================ */
+  function initForm() {
+    const form = document.getElementById("cadastroForm");
+    const successBox = document.getElementById("formSuccess");
+    const submitBtn = document.getElementById("submitBtn");
+    const idadeInput = document.getElementById("idade");
+    const responsavelGroup = document.getElementById("responsavelGroup");
+
+    if (!form) return;
+
+    // Mostrar/ocultar campo de responsável
+    if (idadeInput && responsavelGroup) {
+      idadeInput.addEventListener("input", () => {
+        const age = parseInt(idadeInput.value, 10);
+        responsavelGroup.style.display = (age > 0 && age < 18) ? "block" : "none";
+      });
+    }
+
+    // Máscara de telefone
+    ["telefone", "whatsapp"].forEach(id => {
+      const el = document.getElementById(id);
+      if (!el) return;
+      el.addEventListener("input", () => {
+        let v = el.value.replace(/\D/g, "").slice(0, 11);
+        if (v.length <= 10) {
+          v = v.replace(/(\d{2})(\d{4})(\d{0,4})/, "($1) $2-$3");
+        } else {
+          v = v.replace(/(\d{2})(\d{5})(\d{0,4})/, "($1) $2-$3");
+        }
+        el.value = v;
+      });
+    });
+
+    // Submit
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault();
+      if (!validateForm(form)) return;
+
+      setLoading(true);
+
+      const dados = collectFormData(form);
+
+      try {
+        await sendToGoogleSheets(dados);
+        form.hidden = true;
+        successBox.hidden = false;
+        successBox.scrollIntoView({ behavior: "smooth", block: "center" });
+        animateCheck();
+      } catch (err) {
+        console.error("Erro ao enviar:", err);
+        showFormError("Ocorreu um erro ao enviar. Tente novamente ou entre em contato via WhatsApp.");
+      } finally {
+        setLoading(false);
+      }
+    });
+
+    function setLoading(on) {
+      const text = submitBtn.querySelector(".btn-text");
+      const loading = submitBtn.querySelector(".btn-loading");
+      submitBtn.disabled = on;
+      if (text) text.hidden = on;
+      if (loading) loading.hidden = !on;
+    }
+
+    function validateForm(form) {
+      let valid = true;
+
+      // Limpar erros anteriores
+      form.querySelectorAll(".field-error").forEach(el => {
+        el.textContent = "";
+        el.classList.remove("visible");
+      });
+      form.querySelectorAll(".error").forEach(el => el.classList.remove("error"));
+
+      // Campos obrigatórios simples
+      const required = ["nome", "idade", "telefone", "whatsapp", "sexo"];
+      required.forEach(id => {
+        const input = document.getElementById(id);
+        if (!input || !input.value.trim()) {
+          setFieldError(input, "Este campo é obrigatório.");
+          valid = false;
+        }
+      });
+
+      // Radio de experiência
+      const exp = form.querySelector('input[name="experiencia"]:checked');
+      if (!exp) {
+        const errEl = document.getElementById("experienciaError");
+        if (errEl) { errEl.textContent = "Selecione uma opção."; errEl.classList.add("visible"); }
+        valid = false;
+      }
+
+      // Idade mínima
+      const idade = parseInt(document.getElementById("idade")?.value, 10);
+      if (isNaN(idade) || idade < 4) {
+        setFieldError(document.getElementById("idade"), "Idade mínima: 4 anos.");
+        valid = false;
+      }
+
+      if (!valid) {
+        form.querySelector(".error")?.focus();
+      }
+
+      return valid;
+    }
+
+    function setFieldError(input, msg) {
+      if (!input) return;
+      input.classList.add("error");
+      const errEl = input.nextElementSibling;
+      if (errEl && errEl.classList.contains("field-error")) {
+        errEl.textContent = msg;
+        errEl.classList.add("visible");
+      }
+    }
+
+    function collectFormData(form) {
+      const fd = new FormData(form);
+      const dados = {};
+      fd.forEach((v, k) => { dados[k] = v; });
+      dados.timestamp = new Date().toLocaleString("pt-BR");
+      return dados;
+    }
+
+    function showFormError(msg) {
+      let el = document.getElementById("globalFormError");
+      if (!el) {
+        el = document.createElement("p");
+        el.id = "globalFormError";
+        el.className = "global-form-error";
+        el.setAttribute("role", "alert");
+        form.prepend(el);
+      }
+      el.textContent = msg;
+    }
+  }
+
+  /* ============================================================
+   * ENVIO PARA AIRTABLE
+   * ============================================================ */
+  async function sendToGoogleSheets(dados) {
+    const url = `https://api.airtable.com/v0/${CONFIG.AIRTABLE_BASE}/${encodeURIComponent(CONFIG.AIRTABLE_TABLE)}`;
+
+    const fields = {
+      "Nome":         dados.nome        || "",
+      "Idade":        dados.idade       || "",
+      "Telefone":     dados.telefone    || "",
+      "WhatsApp":     dados.whatsapp    || "",
+      "Sexo":         dados.sexo        || "",
+      "Faixa":        dados.faixa       || "",
+      "Experiencia":  dados.experiencia || "",
+      "Responsavel":  dados.responsavel || "",
+      "Turma":        dados.turma       || "",
+      "Observacoes":  dados.observacoes || "",
+      "Data":         dados.timestamp   || new Date().toLocaleString("pt-BR"),
+    };
+
+    const response = await fetch(url, {
+      method: "POST",
+      headers: {
+        "Authorization": `Bearer ${CONFIG.AIRTABLE_TOKEN}`,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ fields }),
+    });
+
+    if (!response.ok) {
+      const err = await response.json();
+      throw new Error(err.error?.message || "Erro ao enviar para o Airtable");
+    }
+
+    return response;
+  }
+
+  /* ============================================================
+   * ANIMAÇÃO DE SUCESSO (checkmark SVG)
+   * ============================================================ */
+  function animateCheck() {
+    const path = document.querySelector(".checkmark");
+    if (!path) return;
+    const length = path.getTotalLength ? path.getTotalLength() : 50;
+    path.style.strokeDasharray = length;
+    path.style.strokeDashoffset = length;
+    requestAnimationFrame(() => {
+      path.style.transition = "stroke-dashoffset 0.6s ease 0.2s";
+      path.style.strokeDashoffset = "0";
+    });
+  }
+
+  /* ============================================================
+   * 10. FOOTER — ano atual
+   * ============================================================ */
+  function initFooter() {
+    const yearEl = document.getElementById("footerYear");
+    if (yearEl) yearEl.textContent = new Date().getFullYear();
+  }
+
+  /* ============================================================
+   * SMOOTH SCROLL para âncoras
+   * ============================================================ */
+  function initSmoothScroll() {
+    document.querySelectorAll('a[href^="#"]').forEach(a => {
+      a.addEventListener("click", e => {
+        const id = a.getAttribute("href").slice(1);
+        const target = document.getElementById(id);
+        if (target) {
+          e.preventDefault();
+          const offset = 80; // altura da navbar
+          const top = target.getBoundingClientRect().top + window.scrollY - offset;
+          window.scrollTo({ top, behavior: "smooth" });
+        }
+      });
+    });
+  }
+
+  /* ============================================================
+   * PARALLAX leve no hero
+   * ============================================================ */
+  function initParallax() {
+    const heroBg = document.querySelector(".hero-bg");
+    if (!heroBg || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
+    window.addEventListener("scroll", () => {
+      const y = window.scrollY;
+      heroBg.style.transform = `translateY(${y * 0.35}px)`;
+    }, { passive: true });
+  }
+
+  /* ============================================================
+   * INIT — ponto de entrada
+   * ============================================================ */
+  function init() {
+    initLoader();
+    initNavbar();
+    initHeroParticles();
+    initCounters();
+    initScrollReveal();
+    renderDiferenciais();
+    renderGaleria();
+    renderEventos();
+    initForm();
+    initFooter();
+    initSmoothScroll();
+    initParallax();
+  }
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", init);
+  } else {
+    init();
+  }
+
+})();
+
+</script>
+</body>
+</html>
