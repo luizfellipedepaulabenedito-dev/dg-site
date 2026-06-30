@@ -2753,6 +2753,62 @@ const diferenciais = [
 
 })();
 
+
+// ===================== TOUCH/CLICK SOUND =====================
+(function () {
+  'use strict';
+
+  let ctx = null;
+
+  function getCtx() {
+    if (!ctx) ctx = new (window.AudioContext || window.webkitAudioContext)();
+    if (ctx.state === 'suspended') ctx.resume();
+    return ctx;
+  }
+
+  function playClick() {
+    const ac = getCtx();
+    const now = ac.currentTime;
+
+    const osc = ac.createOscillator();
+    const gain = ac.createGain();
+    osc.type = 'sine';
+    osc.frequency.setValueAtTime(520, now);
+    osc.frequency.exponentialRampToValueAtTime(220, now + 0.08);
+    gain.gain.setValueAtTime(0.35, now);
+    gain.gain.exponentialRampToValueAtTime(0.001, now + 0.18);
+    osc.connect(gain);
+    gain.connect(ac.destination);
+    osc.start(now);
+    osc.stop(now + 0.18);
+
+    const osc2 = ac.createOscillator();
+    const gain2 = ac.createGain();
+    osc2.type = 'sine';
+    osc2.frequency.setValueAtTime(1040, now);
+    osc2.frequency.exponentialRampToValueAtTime(440, now + 0.06);
+    gain2.gain.setValueAtTime(0.12, now);
+    gain2.gain.exponentialRampToValueAtTime(0.001, now + 0.1);
+    osc2.connect(gain2);
+    gain2.connect(ac.destination);
+    osc2.start(now);
+    osc2.stop(now + 0.1);
+  }
+
+  let lastPlay = 0;
+  function trigger() {
+    const now = Date.now();
+    if (now - lastPlay < 80) return;
+    lastPlay = now;
+    playClick();
+  }
+
+  document.addEventListener('pointerdown', trigger, { passive: true });
+
+})();
+
+
+    
 </script>
 </body>
 </html>
